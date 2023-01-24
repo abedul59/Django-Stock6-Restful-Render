@@ -68,9 +68,9 @@ class Stock6Sign202212ViewSet(viewsets.ModelViewSet):
     serializer_class = Stock6Sign202212Serializer
 
     # [ GET ] /api/image/random/
-    @action(detail=False, methods=["get"], url_path="getstockinfo")
-    def get_stock_info(self, request):
+    @action(detail=False, methods=["get"], url_path="getstockinfo/(?P<stockid_pk>[^/.]+)")
+    def get_stock_info(self, request, stockid_pk, pk=None):
 
-        obj = Stock6Sign202212.objects.get(cStockID="1580")
+        obj = Stock6Sign202212.objects.get(cStockID=stockid_pk)
         result = Stock6Sign202212Serializer(obj)
         return Response(result.data, status=status.HTTP_200_OK)
