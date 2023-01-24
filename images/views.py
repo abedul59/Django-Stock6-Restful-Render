@@ -71,6 +71,6 @@ class Stock6Sign202212ViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"], url_path="getstockinfo")
     def get_stock_info(self, request):
 
-        obj = Stock6Sign202212.objects.all()
+        obj = Stock6Sign202212.objects.get(cStockID="1580")
         result = Stock6Sign202212Serializer(obj)
         return Response(result.data, status=status.HTTP_200_OK)
