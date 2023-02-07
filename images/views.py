@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status
-from images.models import Images, Stock6Sign202212
-from images.serializers import ImageSerializer, Stock6Sign202212Serializer
+from images.models import Images, Stock6Sign202212, Stock6Sign202301
+from images.serializers import ImageSerializer, Stock6Sign202212Serializer, Stock6Sign202301Serializer
 
 # from ptt_beauty_images import settings
 from rest_framework.response import Response
@@ -73,4 +73,23 @@ class Stock6Sign202212ViewSet(viewsets.ModelViewSet):
 
         obj = Stock6Sign202212.objects.get(cStockID=stockid_pk)
         result = Stock6Sign202212Serializer(obj)
+        return Response(result.data, status=status.HTTP_200_OK)
+    
+class Stock6Sign202301ViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+
+    Additionally we also provide an extra `highlight` action.
+    """
+
+    queryset = Stock6Sign202301.objects.all()
+    serializer_class = Stock6Sign202301Serializer
+
+    # [ GET ] /api/image/random/
+    @action(detail=False, methods=["get"], url_path="getstockinfo/(?P<stockid_pk>[^/.]+)")
+    def get_stock_info(self, request, stockid_pk, pk=None):
+
+        obj = Stock6Sign202301.objects.get(cStockID=stockid_pk)
+        result = Stock6Sign202301Serializer(obj)
         return Response(result.data, status=status.HTTP_200_OK)
