@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from images.models import Images
 from images.models import Stock6Sign202212
-
+from images.models import Stock6Sign202301
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,5 +17,9 @@ class Stock6Sign202212Serializer(serializers.ModelSerializer):
         # fields = '__all__'
         fields = ('id', 'cStockID', 'cStockName', 'cNewestSeason', 'cNewestRev', 'cSign1' ,'cSign2' ,'cSign3' ,'cSign4' ,'cSign5' ,'cSign6' ,'cAverageScore' ,'cLossGain' ,'CreateDate')
 
-
-    
+class Stock6Sign202301Serializer(serializers.ModelSerializer):
+    class Meta:
+        
+        model = Stock6Sign202301
+        # fields = '__all__'
+        fields = ('id', 'cStockID', 'cStockName', 'cNewestSeason', 'cNewestRev', 'cSign1' ,'cSign2' ,'cSign3' ,'cSign4' ,'cSign5' ,'cSign6' ,'cAverageScore' ,'cLossGain' ,'CreateDate')
